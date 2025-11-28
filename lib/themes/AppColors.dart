@@ -20,7 +20,7 @@ class AppColors {
   static const darkForeground = Color(0xFFFAFAFA); // hsl(210, 20%, 98%)
 
   static const darkPrimary = Color(0xFF3B82F6); // hsl(217.2, 91.2%, 59.8%)
-  static const darkPrimaryForeground = Color(0xFF0F172A); // hsl(222.2, 47.4%, 11.2%)
+  static const darkPrimaryForeground = Color(0xFF191919); // hsl(222.2, 47.4%, 11.2%)
 
   static const darkSecondary = Color(0xFF1E293B); // hsl(217.2, 32.6%, 17.5%)
   static const darkSecondaryForeground = Color(0xFFFAFAFA); // hsl(210, 20%, 98%)

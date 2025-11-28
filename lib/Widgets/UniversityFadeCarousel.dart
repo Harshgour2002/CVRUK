@@ -37,7 +37,7 @@ class _UniversityFadeCarouselState extends State<UniversityFadeCarousel> {
   @override
   Widget build(BuildContext context) {
     return  SizedBox(
-        height: 250,
+        height: 230,
         child: Stack(
           children: [
             /// ---------- FADE IMAGES ----------
@@ -49,7 +49,7 @@ class _UniversityFadeCarouselState extends State<UniversityFadeCarousel> {
                 child: Image.asset(
                   widget.images[_currentIndex],
                   width: double.infinity,
-                  height: 250,
+                  height: 230,
                   fit: BoxFit.cover,
                 ),
               ),

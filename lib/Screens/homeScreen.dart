@@ -1,7 +1,10 @@
-import 'package:cvruk/Widgets/FloatingNavigationBar.dart';
-import 'package:cvruk/Widgets/affiliated_organizations.dart';
 import 'package:flutter/material.dart';
-import '../Widgets/UniversityFadeCarousel.dart';
+
+import '../Widgets/AdmissionsPage.dart';
+import '../Widgets/ContactPage.dart';
+import '../Widgets/CoursesPage.dart';
+import '../Widgets/HomeContent.dart';
+import '../Widgets/BottomNavBar.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
@@ -11,19 +14,21 @@ class Homescreen extends StatefulWidget {
 }
 
 class _HomescreenState extends State<Homescreen> {
-  final placedStudents = [
-    "assets/images/image1.jpeg",
-    "assets/images/image2.jpeg",
-    "assets/images/image3.jpeg",
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  final List<Widget> _screens = const [
+    HomeContent(),
+    CoursesPage(),
+    AdmissionsPage(),
+    ContactPage(),
   ];
 
-  int _currentIndex = 0;
-  final List<Widget> _pages = [
-    const Homescreen(),
-    const Center(child: Text("this is gallery"),),
-    const Center(child: Text("this is career"),),
-    const Center(child: Text("this is contact"),),
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,50 +36,44 @@ class _HomescreenState extends State<Homescreen> {
         preferredSize: const Size.fromHeight(85),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-          decoration: const BoxDecoration(
-            color: Colors.white,
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.surface,
             boxShadow: [
               BoxShadow(
-                color: Colors.black12,
+                color: Theme.of(context).shadowColor.withOpacity(0.15),
                 blurRadius: 8,
-                offset: Offset(0, 3),
+                offset: const Offset(0, 3),
               ),
             ],
           ),
-
           child: SafeArea(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                /// -------- LEFT SIDE (Logo + Title) ----------
                 Row(
                   children: [
                     Image.asset('assets/university-logo.png', height: 45),
                     const SizedBox(width: 14),
-
                     Text(
                       "CVRUK",
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Theme.of(context).colorScheme.onSurface,
                         fontSize: 20,
                         fontWeight: FontWeight.w700,
-                        letterSpacing: 0.4,
                       ),
                     ),
-                    SizedBox(height: 2),
                   ],
                 ),
 
-                /// -------- RIGHT SIDE (Profile Button) ----------
-                InkWell(
-                  onTap: () {
-                    //take to the login screen for student to login
-                  },
-                  borderRadius: BorderRadius.circular(50),
-                  child: const CircleAvatar(
-                    radius: 22,
-                    backgroundColor: Color(0xFFF0F0F0),
-                    child: Icon(Icons.person, size: 28, color: Colors.black87),
+                CircleAvatar(
+                  radius: 22,
+                  backgroundColor: Theme.of(
+                    context,
+                  ).colorScheme.tertiaryContainer,
+                  child: Icon(
+                    Icons.person,
+                    size: 28,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
               ],
@@ -82,48 +81,13 @@ class _HomescreenState extends State<Homescreen> {
           ),
         ),
       ),
-      body: Column(
-        children: [
-          //CarouselSlider() for showing placement images,
-          //const SizedBox(height: 10,),
-          //Placedstudentcarousel(studentImages: placedStudents,),
-          //fade-in fade-out effect of university images, and top of that about university
-          //on bottom of the image
-          //const SizedBox(height: 10,),
-          UniversityFadeCarousel(
-            images: placedStudents,
-            aboutText:
-                "Our university has a legacy of excellence in education, global research, "
-                "and student-centered innovation.",
-          ),
-          const SizedBox(height: 10),
-          //horizontal scrollable list of affiliation
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0),
-            child: Align(
-              alignment: Alignment.topLeft,
-                child: const Text(
-                    "Accreditation and Affiliation",
-                  style: TextStyle(fontSize: 18,
-                )),
-            ),
-          ),
-          //const SizedBox(height: 8),
-          AffiliatedOrganizationsBox(),
-          const SizedBox(height: 10),
-          //grid view of explore section for different services
-          //bottom navigation bar with home, gallery, course, career
-        ],
+
+      body: _screens[_selectedIndex],
+
+      bottomNavigationBar: BottomNavBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
       ),
-      // _pages[_currentIndex],
-      // bottomNavigationBar : Floatingnavigationbar(
-      //   currentIndex: _currentIndex,
-      //   onTap: (index) {
-      //     setState(() {
-      //       _currentIndex = index;
-      //     });
-      //   },
-      // ),
     );
   }
 }

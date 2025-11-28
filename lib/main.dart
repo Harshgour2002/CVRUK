@@ -1,9 +1,12 @@
+import 'package:cvruk/themes/AppTheme.dart';
 import 'package:flutter/material.dart';
 import 'Screens/homeScreen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const CVRUApp());
+  runApp(
+      const CVRUApp()
+  );
 }
 
 class CVRUApp extends StatelessWidget {
@@ -14,16 +17,9 @@ class CVRUApp extends StatelessWidget {
     return MaterialApp(
       title: 'CVRU University',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF3B82F6)),
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Color(0xFF3B82F6),
-          foregroundColor: Colors.white,
-          centerTitle: true,
-          elevation: 0,
-        ),
-      ),
+      theme: AppTheme.lightTheme,     // Light Theme
+      darkTheme: AppTheme.darkTheme, // Dark Theme
+      themeMode: ThemeMode.system,
       home: const Homescreen(),
     );
   }
