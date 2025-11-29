@@ -6,9 +6,9 @@ class RamanVoice extends StatelessWidget {
   const RamanVoice({super.key});
 
   // Social links
-  final String yt = "https://youtube.com/";
-  final String ig = "https://instagram.com/";
-  final String fb = "https://facebook.com/";
+  final String yt = "https://www.youtube.com/@ramanvoiceofficial";
+  final String ig = "https://instagram.com/ramanvoiceofficial/";
+  final String fb = "https://facebook.com/ramanvoiceofficial/";
 
   // Open URL
   void openLink(String url) {
