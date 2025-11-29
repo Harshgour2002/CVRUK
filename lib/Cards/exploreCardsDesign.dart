@@ -2,7 +2,7 @@ import 'package:cvruk/Screens/Achievement.dart';
 import 'package:cvruk/Screens/FeedBack.dart';
 import 'package:cvruk/Screens/LatestNews.dart';
 import 'package:cvruk/Screens/OngoingPrograms.dart';
-import 'package:cvruk/Screens/RamanRadio.dart';
+import 'package:cvruk/Screens/RamanVoice.dart';
 import 'package:cvruk/Screens/Sports.dart';
 import 'package:cvruk/Screens/UpcomingEvents.dart';
 import 'package:flutter/material.dart';
@@ -75,7 +75,7 @@ class Explorecardsdesign extends StatelessWidget {
             Navigator.push(
             context,
             MaterialPageRoute(
-            builder: (context) => RamanRadio()));
+            builder: (context) => RamanVoice()));
           };
           case 7:
           {

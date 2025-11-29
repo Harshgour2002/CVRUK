@@ -25,7 +25,7 @@ class HomeContent extends StatelessWidget {
     {"title": "Sports", "icon": Icons.sports_soccer},
     {"title": "Placement", "icon": Icons.business_center_rounded},
     {"title": "Achievement", "icon": Icons.emoji_events_rounded},
-    {"title": "Raman \n Radio", "icon": Icons.radio_rounded},
+    {"title": "Raman \n Voice", "icon": Icons.radio_rounded},
     {"title": "Feedback", "icon": Icons.feedback_rounded},
   ];
 

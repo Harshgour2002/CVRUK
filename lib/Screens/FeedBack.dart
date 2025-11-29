@@ -56,7 +56,7 @@ class _FeedBackState extends State<FeedBack> {
         elevation: 0,
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(10),
         child: Center(
           child: Container(
             padding: const EdgeInsets.all(20),
