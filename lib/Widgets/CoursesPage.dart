@@ -5,48 +5,141 @@ class CoursesPage extends StatelessWidget {
 
   final List<Map<String, dynamic>> departments = const [
     {
-      "title": "Computer Science & Engineering",
-      "courses": [
-        "B.Tech CSE",
-        "B.Tech AI & ML",
-        "B.Tech Data Science",
-        "M.Tech CSE",
-        "PhD in CSE",
+      "title": "Agriculture",
+      "image": "assets/departments/agriculture.jpg",
+      "ug": [
+        "Bachelor of Science in Agriculture",
+      ],
+      "pg": [
+        "Master of Science in Agriculture Extension",
+        "Master of Science in Agronomy Education",
+      ],
+      "diploma": [],
+    },
+    {
+      "title": "Liberal Arts, Humanities and Languages",
+      "image": "assets/departments/liberal_arts.jpg",
+      "ug": [
+        "Bachelor of Arts",
+        "Bachelor of Library Science",
+        "Bachelor of Social Work",
+      ],
+      "pg": [
+        "Master of Arts (English)",
+        "Master of Arts (Sociology)",
+        "Master of Arts (History)",
+        "Master of Arts (Political Science)",
+      ],
+      "diploma": [],
+    },
+    {
+      "title": "Commerce",
+      "image": "assets/departments/commerce.jpg",
+      "ug": [
+        "Bachelor of Commerce (Plain)",
+      ],
+      "pg": [
+        "Master of Commerce",
+      ],
+      "diploma": [],
+    },
+    {
+      "title": "Education",
+      "image": "assets/departments/education.jpg",
+      "ug": [
+        "Bachelor of Education",
+      ],
+      "pg": [],
+      "diploma": [],
+    },
+    {
+      "title": "Rural Technology",
+      "image": "assets/departments/rural_tech.jpg",
+      "ug": [
+        "Bachelor of Technology in Agriculture Engineering",
+      ],
+      "pg": [],
+      "diploma": [],
+    },
+    {
+      "title": "Vocational Education",
+      "image": "assets/departments/vocational.jpg",
+      "ug": [
+        "Bachelor of Vocation in Bamboo Craft Enterprise",
+        "Bachelor of Vocation in Information Technology",
+        "Bachelor of Vocation in Medical Laboratory Technician",
+      ],
+      "pg": [],
+      "diploma": [],
+    },
+    {
+      "title": "Rural Management",
+      "image": "assets/departments/rural_mgmt.jpg",
+      "ug": [],
+      "pg": [
+        "Master of Business Administration",
+      ],
+      "diploma": [],
+    },
+    {
+      "title": "Paramedical Science",
+      "image": "assets/departments/paramedical.jpg",
+      "diploma": [
+        "Diploma in Medical Laboratory Technology",
+      ],
+      "ug": [
+        "Bachelor of Medical Laboratory Technology",
+        "Bachelor of Physiotherapy",
+      ],
+      "pg": [],
+    },
+    {
+      "title": "Science",
+      "image": "assets/departments/science.jpg",
+      "ug": [
+        "Bachelor of Science (Chemistry, Botany & Zoology)",
+        "Bachelor of Science (Physics, Chemistry & Mathematics)",
+        "Bachelor of Science in Microbiology",
+        "Bachelor of Science (CBZ + Diploma in Medical Lab Technology)",
+      ],
+      "pg": [],
+      "diploma": [],
+    },
+    {
+      "title": "CS & IT",
+      "image": "assets/departments/csit.jpg",
+      "diploma": [
+        "Diploma in Computer Application",
+        "Post Graduate Diploma in Computer Application",
+      ],
+      "ug": [
+        "Bachelor of Computer Application",
+      ],
+      "pg": [
+        "Master of Science (Information Technology)",
+        "Master of Computer Application",
       ],
     },
     {
-      "title": "Electronics & Communication",
-      "courses": [
-        "B.Tech ECE",
-        "M.Tech VLSI",
-        "Diploma in ECE",
+      "title": "Management Studies and Entrepreneurial Development",
+      "image": "assets/departments/management.jpg",
+      "ug": [
+        "Bachelor of Business Management",
       ],
+      "pg": [],
+      "diploma": [],
     },
     {
-      "title": "Mechanical Engineering",
-      "courses": [
-        "B.Tech Mechanical",
-        "M.Tech Thermal",
-        "Diploma in Mechanical",
+      "title": "Pharmacy",
+      "image": "assets/departments/pharmacy.jpg",
+      "diploma": [
+        "Diploma in Pharmacy",
       ],
+      "ug": [
+        "Bachelor of Pharmacy",
+      ],
+      "pg": [],
     },
-    {
-      "title": "Management Studies",
-      "courses": [
-        "BBA",
-        "MBA",
-        "B.Com (Hons)",
-      ],
-    },
-    {
-      "title": "Science Department",
-      "courses": [
-        "B.Sc Mathematics",
-        "B.Sc Chemistry",
-        "B.Sc Physics",
-        "M.Sc Physics",
-      ],
-    }
   ];
 
   @override
@@ -54,20 +147,18 @@ class CoursesPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(8),
         child: Column(
           children: departments.map((dept) {
             return Container(
-              width: double.infinity,
-              margin: const EdgeInsets.only(bottom: 20),
-              padding: const EdgeInsets.all(16),
+              margin: const EdgeInsets.only(bottom: 22),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(18),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black12,
-                    blurRadius: 6,
+                    blurRadius: 8,
                     offset: const Offset(0, 3),
                   ),
                 ],
@@ -76,40 +167,63 @@ class CoursesPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Department Title
-                  Text(
-                    dept["title"],
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
+                  // Header Image
+                  ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(18),
+                      topRight: Radius.circular(18),
+                      bottomLeft: Radius.circular(18),
+                      bottomRight: Radius.circular(18)
+                    ),
+                    child: AspectRatio(
+                      aspectRatio: 16 / 7,
+                      child: Image.asset(
+                        dept["image"],
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
 
-                  const SizedBox(height: 12),
-
-                  // List of courses using Wrap
-                  Wrap(
-                    spacing: 10,
-                    runSpacing: 10,
-                    children: (
-                        dept["courses"] as List<String>).map((course) {
-                      return Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 14, vertical: 10),
-                        decoration: BoxDecoration(
-                          color: Colors.blue.shade50,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(color: Colors.blue.shade200),
-                        ),
-                        child: Text(
-                          course,
+                  // Body Content
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          dept["title"],
                           style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
+                            fontSize: 22,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
-                      );
-                    }).toList(),
+                        divider(),
+
+                        const SizedBox(height: 18),
+
+                        // Diploma
+                        if ((dept["diploma"] as List).isNotEmpty) ...[
+                          sectionTitle("Diploma Programs"),
+                          bulletList(dept["diploma"]),
+                          const SizedBox(height: 16),
+                          divider(),
+                        ],
+
+                        // UG
+                        if ((dept["ug"] as List).isNotEmpty) ...[
+                          sectionTitle("Undergraduate Programs"),
+                          bulletList(dept["ug"]),
+                          const SizedBox(height: 16),
+                          divider(),
+                        ],
+
+                        // PG
+                        if ((dept["pg"] as List).isNotEmpty) ...[
+                          sectionTitle("Postgraduate Programs"),
+                          bulletList(dept["pg"]),
+                        ],
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -117,6 +231,48 @@ class CoursesPage extends StatelessWidget {
           }).toList(),
         ),
       ),
+    );
+  }
+
+  // --------- Helper Widgets ----------
+
+  Widget sectionTitle(String text) {
+    return Text(
+      text,
+      style: const TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.w600,
+      ),
+    );
+  }
+
+  Widget bulletList(List items) {
+    return Column(
+      children: items.map((course) {
+        return Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text("•  ", style: TextStyle(fontSize: 16)),
+            Expanded(
+              child: Text(
+                course,
+                style: const TextStyle(
+                  fontSize: 15,
+                  height: 1.4,
+                ),
+              ),
+            ),
+          ],
+        );
+      }).toList(),
+    );
+  }
+
+  Widget divider() {
+    return const Divider(
+      height: 20,
+      thickness: 1,
+      color: Colors.black12,
     );
   }
 }
