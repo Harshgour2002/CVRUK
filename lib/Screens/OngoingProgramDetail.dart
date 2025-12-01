@@ -17,9 +17,6 @@ class _OngoingProgramDetailPageState extends State<OngoingProgramDetailPage> {
   double downloadProgress = 0.0;
   bool isDownloading = false;
 
-  /// ----------------------------------
-  /// SHARE PROGRAM
-  /// ----------------------------------
   void shareProgram() {
     Share.share(
       "Check out this program: ${widget.program["title"]}\n"
@@ -28,9 +25,6 @@ class _OngoingProgramDetailPageState extends State<OngoingProgramDetailPage> {
     );
   }
 
-  /// ----------------------------------
-  /// DOWNLOAD BROCHURE
-  /// ----------------------------------
   Future<void> downloadBrochure() async {
     try {
       setState(() {
@@ -67,9 +61,6 @@ class _OngoingProgramDetailPageState extends State<OngoingProgramDetailPage> {
     }
   }
 
-  /// ----------------------------------
-  /// UI BUILD
-  /// ----------------------------------
   @override
   Widget build(BuildContext context) {
     final program = widget.program;
@@ -80,9 +71,6 @@ class _OngoingProgramDetailPageState extends State<OngoingProgramDetailPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// -----------------------------------------
-            /// TOP IMAGE + BACK BUTTON + HERO ANIMATION
-            /// -----------------------------------------
             Stack(
               children: [
                 Hero(
@@ -121,10 +109,6 @@ class _OngoingProgramDetailPageState extends State<OngoingProgramDetailPage> {
             ),
 
             const SizedBox(height: 15),
-
-            /// -----------------------------------------
-            /// DETAILS CARD
-            /// -----------------------------------------
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Container(
@@ -182,55 +166,7 @@ class _OngoingProgramDetailPageState extends State<OngoingProgramDetailPage> {
 
                     const SizedBox(height: 20),
 
-                    /// --------------------------
-                    /// DOWNLOAD BROCHURE BUTTON
-                    /// --------------------------
-                    ElevatedButton(
-                      onPressed: isDownloading ? null : downloadBrochure,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.grey.shade200,
-                        elevation: 0,
-                        padding: const EdgeInsets.all(10),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                      ),
-                      child: isDownloading
-                          ? SizedBox(
-                        width: 25,
-                        height: 25,
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            CircularProgressIndicator(
-                              value: downloadProgress,
-                              strokeWidth: 3,
-                              color: Colors.black,
-                            ),
-                            Text(
-                              "${(downloadProgress * 100).toStringAsFixed(0)}%",
-                              style: const TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                          : Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: const [
-                          Icon(Icons.download_rounded,
-                              size: 20, color: Colors.black),
-                          SizedBox(width: 8),
-                          Text(
-                            "Download Brochure",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black87),
-                          ),
-                        ],
-                      ),
-                    )
+
                   ],
                 ),
               ),
@@ -239,11 +175,8 @@ class _OngoingProgramDetailPageState extends State<OngoingProgramDetailPage> {
         ),
       ),
 
-      /// -----------------------------------------
-      /// BOTTOM SHARE + REGISTER BAR
-      /// -----------------------------------------
       bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
@@ -258,19 +191,54 @@ class _OngoingProgramDetailPageState extends State<OngoingProgramDetailPage> {
             ),
             SizedBox(width: 10),
             Expanded(
-              child: ElevatedButton(
-                onPressed: () {
-                  // TODO: Navigate to registration
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue.shade700,
-                  padding: EdgeInsets.symmetric(vertical: 14),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                ),
-                child: Text(
-                  "Register Now",
-                  style: TextStyle(fontSize: 17, color: Colors.white),
+              child:  Container(
+                height: 50,
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: isDownloading ? null : downloadBrochure,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.grey.shade200,
+                    elevation: 0,
+                    padding: const EdgeInsets.all(10),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                  ),
+                  child: isDownloading
+                      ? SizedBox(
+                    width: 25,
+                    height: 25,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        CircularProgressIndicator(
+                          value: downloadProgress,
+                          strokeWidth: 3,
+                          color: Colors.black,
+                        ),
+                        Text(
+                          "${(downloadProgress * 100).toStringAsFixed(0)}%",
+                          style: const TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                      : Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: const [
+                      Icon(Icons.download_rounded,
+                          size: 20, color: Colors.black),
+                      SizedBox(width: 8),
+                      Text(
+                        "Download Brochure",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black87),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
