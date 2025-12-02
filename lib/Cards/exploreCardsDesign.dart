@@ -86,6 +86,7 @@ class Explorecardsdesign extends StatelessWidget {
           }
         }
       },
+
       child: Container(
         margin: const EdgeInsets.all(6.0),
         padding: const EdgeInsets.all(2.0),
@@ -98,7 +99,7 @@ class Explorecardsdesign extends StatelessWidget {
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+        children: [
             // Circular Icon Background
             Container(
               height: 45,

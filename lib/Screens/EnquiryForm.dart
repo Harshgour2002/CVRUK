@@ -1,0 +1,255 @@
+import 'package:flutter/material.dart';
+
+class EnquiryForm extends StatefulWidget {
+  const EnquiryForm({super.key});
+
+  @override
+  State<EnquiryForm> createState() => _EnquiryFormState();
+}
+
+class _EnquiryFormState extends State<EnquiryForm> {
+  final _formKey = GlobalKey<FormState>();
+
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController contactController = TextEditingController();
+
+  // 🔥 Program → Courses Mapping (UPDATED)
+  final Map<String, List<String>> programCourses = {
+    "Diploma": [
+      "Diploma in Medical Laboratory Technology",
+      "Diploma in Computer Application",
+      "Post Graduate Diploma in Computer Application",
+      "Diploma in Pharmacy",
+    ],
+    // 🔥 UPDATED WITH IMAGE DATA
+    "Undergraduate": [
+      "Bachelors of Science in Agriculture",
+      "Bachelors Of Medical Laboratory Technology",
+      "Bachelors of Physiotherapy",
+      "Bachelors of Pharmacy",
+      "Bachelors of Commerce (Plain)",
+      "Bachelors of Science in Micro Biology",
+      "Bachelors of Education",
+      "Bachelors in Science (Chemistry, Botany & Zoology with Diploma in Medical Laboratory Technology)",
+      "Bachelors of Science (Chemistry, Botany & Zoology)",
+      "Bachelors of Science (Physics, Chemistry & Maths)",
+      "Bachelors of Technology in Agriculture Engineering",
+      "Bachelors of Vocational Education in Information Technology",
+      "Bachelors of Vocational Education In Bamboo Craft Enterprise",
+      "Bachelors of Vocational Education in Medical Laboratory Technician",
+      "Bachelors of Business Management",
+      "Bachelors of Computer Application",
+      "Bachelors of social work",
+      "Bachelors of Journalism and Mass Communication",
+      "Bachelors of Library Science",
+      "Bachelors of Arts",
+    ],
+
+    // 🔥 UPDATED WITH IMAGE DATA
+    "Postgraduate": [
+      "Masters of Science in Agriculture Extension",
+      "Masters of Science in Agronomy Education",
+      "Masters in Commerce",
+      "Masters of Science in Ziology",
+      "Masters in Science (Ziology with Post Graduation Diploma in Computer Application)",
+      "Masters of Science in Botany",
+      "Masters of Science in MatheMatics",
+      "Masters of Science in Chemistry",
+      "Masters in Science (Chemistry with Post Graduation Diploma in Computer Application)",
+      "Masters in Science (Maths with Post Graduation Diploma in Computer Application)",
+      "Masters of Science (Botany with Post Graduation Diploma in Computer Application)",
+      "Masters in Science (Information Technology)",
+      "Masters in Computer Application",
+      "Masters in Business Administration",
+      "Masters of Social Work",
+      "Masters of Library Science",
+      "Masters of Arts (English)",
+      "Masters of Arts (Hindi)",
+      "Masters of Arts (Sociology)",
+      "Masters of Arts (Political Science)",
+      "Masters of Arts (History)",
+    ],
+
+    "PHD": [
+      "phD in Education",
+      "phD in Management",
+      "phD in Commerce",
+      "phD in Agriculture",
+      "phD in Physics",
+      "phD in Chemistry",
+      "phD in Zoology",
+      "phD in Political Science",
+      "phD in English Literature",
+      "phD in Hindi Literature",
+    ],
+  };
+
+  final List<String> programType = [
+    "Select Program",
+    "Diploma",
+    "Undergraduate",
+    "Postgraduate",
+    "PHD"
+  ];
+
+  String? selectedProgram = "Select Program";
+  String? selectedCourse;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Enquiry Form"),
+        centerTitle: true,
+      ),
+
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+
+        child: Form(
+          key: _formKey,
+
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Name
+              TextFormField(
+                controller: nameController,
+                decoration: const InputDecoration(
+                  labelText: "Full Name",
+                  border: OutlineInputBorder(),
+                ),
+                validator: (v) =>
+                v == null || v.isEmpty ? "Enter your name" : null,
+              ),
+
+              const SizedBox(height: 16),
+
+              // Email
+              TextFormField(
+                controller: emailController,
+                decoration: const InputDecoration(
+                  labelText: "Email Address",
+                  border: OutlineInputBorder(),
+                ),
+                validator: (v) =>
+                v == null || v.isEmpty ? "Enter your email" : null,
+              ),
+
+              const SizedBox(height: 16),
+
+              // Contact
+              TextFormField(
+                controller: contactController,
+                keyboardType: TextInputType.phone,
+                decoration: const InputDecoration(
+                  labelText: "Contact Number",
+                  border: OutlineInputBorder(),
+                ),
+                validator: (v) =>
+                v == null || v.isEmpty ? "Enter your phone number" : null,
+              ),
+
+              const SizedBox(height: 20),
+
+              // Program Dropdown
+              const Text("Program Type"),
+              DropdownButtonFormField<String>(
+                value: selectedProgram,
+                items: programType.map((p) {
+                  return DropdownMenuItem(value: p, child: Text(p));
+                }).toList(),
+                decoration: const InputDecoration(border: OutlineInputBorder()),
+                onChanged: (value) {
+                  setState(() {
+                    selectedProgram = value!;
+                    selectedCourse = null; // Reset course
+                  });
+                },
+                validator: (v) =>
+                v == "Select Program" ? "Select a program" : null,
+              ),
+
+              const SizedBox(height: 20),
+
+              // Course Dropdown (only visible after program selected)
+              if (selectedProgram != "Select Program")
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text("Select Course"),
+
+                    DropdownButtonFormField<String>(
+                      value: selectedCourse,
+                      isExpanded: true,
+                      itemHeight: null,
+                      isDense: true,
+
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: 15, horizontal: 10),
+                      ),
+
+                      selectedItemBuilder: (BuildContext context) {
+                        return programCourses[selectedProgram]!
+                            .map((value) {
+                          return Text(
+                            value,
+                            style: const TextStyle(
+                                color: Colors.black, height: 1.0),
+                            softWrap: true,
+                            maxLines: null,
+                            overflow: TextOverflow.visible,
+                          );
+                        }).toList();
+                      },
+
+                      items: programCourses[selectedProgram]!.map((course) {
+                        return DropdownMenuItem(
+                          value: course,
+                          child: Text(
+                            course,
+                            softWrap: true,
+                            maxLines: null,
+                          ),
+                        );
+                      }).toList(),
+
+                      onChanged: (value) {
+                        setState(() => selectedCourse = value);
+                      },
+
+                      validator: (v) =>
+                      v == null ? "Please select a course" : null,
+                    ),
+                  ],
+                ),
+
+              const SizedBox(height: 30),
+
+              // Submit Button
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton(
+                  child: const Text("Submit"),
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text("Form Submitted Successfully")),
+                      );
+                    }
+                  },
+                ),
+              ),
+
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

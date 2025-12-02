@@ -1,3 +1,4 @@
+import 'package:cvruk/Screens/EnquiryForm.dart';
 import 'package:flutter/material.dart';
 
 class ContactPage extends StatelessWidget {
@@ -182,7 +183,11 @@ class ContactPage extends StatelessWidget {
                   height: 50,
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context, MaterialPageRoute(
+                          builder: (context)=> EnquiryForm()));
+                    },
                     child: Text(
                       "Generate Inquiry",
                       style: TextStyle(fontSize: 17),
@@ -190,7 +195,6 @@ class ContactPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 10),
-
               ],
             ),
           ),
