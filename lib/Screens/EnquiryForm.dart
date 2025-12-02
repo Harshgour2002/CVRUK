@@ -183,29 +183,31 @@ class _EnquiryFormState extends State<EnquiryForm> {
                     DropdownButtonFormField<String>(
                       value: selectedCourse,
                       isExpanded: true,
-                      itemHeight: null,
-                      isDense: true,
+                      isDense: false, // important → allows height to grow
+                      itemHeight: null, // important → removes fixed 48px height
 
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 15, horizontal: 10),
+                        contentPadding:
+                        EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                       ),
 
+                      // Selected value widget (dynamic height)
                       selectedItemBuilder: (BuildContext context) {
-                        return programCourses[selectedProgram]!
-                            .map((value) {
-                          return Text(
-                            value,
-                            style: const TextStyle(
-                                color: Colors.black, height: 1.0),
-                            softWrap: true,
-                            maxLines: null,
-                            overflow: TextOverflow.visible,
+                        return programCourses[selectedProgram]!.map((value) {
+                          return Flexible(
+                            child: Text(
+                              value,
+                              style: const TextStyle(color: Colors.black),
+                              softWrap: true,
+                              maxLines: null,
+                              overflow: TextOverflow.visible,
+                            ),
                           );
                         }).toList();
                       },
 
+                      // Menu items
                       items: programCourses[selectedProgram]!.map((course) {
                         return DropdownMenuItem(
                           value: course,
@@ -221,11 +223,11 @@ class _EnquiryFormState extends State<EnquiryForm> {
                         setState(() => selectedCourse = value);
                       },
 
-                      validator: (v) =>
-                      v == null ? "Please select a course" : null,
+                      validator: (v) => v == null ? "Please select a course" : null,
                     ),
                   ],
                 ),
+
 
               const SizedBox(height: 30),
 
