@@ -96,154 +96,182 @@ class _EnquiryFormState extends State<EnquiryForm> {
   String? selectedProgram = "Select Program";
   String? selectedCourse;
 
+  InputDecoration modernInput(String label) {
+    return InputDecoration(
+      labelText: label,
+      filled: true,
+      fillColor: Colors.grey.shade100,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+      labelStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: BorderSide(color: Colors.grey.shade300),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: const BorderSide(color: Colors.blue, width: 1.4),
+      ),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Enquiry Form"), centerTitle: true),
 
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-
-        child: Form(
-          key: _formKey,
-
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Name
-              TextFormField(
-                controller: nameController,
-                decoration: const InputDecoration(
-                  labelText: "Full Name",
-                  border: OutlineInputBorder(),
+        padding: const EdgeInsets.all(10.0),
+        child: Center(
+          child: Container(
+            padding: EdgeInsets.all(20.0),
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(18),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black12,
+                  offset: const Offset(0, 2),
+                  blurRadius: 8,
                 ),
-                validator: (v) =>
-                    v == null || v.isEmpty ? "Enter your name" : null,
-              ),
+              ],
+            ),
+            child: Form(
+              key: _formKey,
 
-              const SizedBox(height: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Name
+                  TextFormField(
+                    controller: nameController,
+                    decoration: modernInput("Full Name"),
+                    validator: (v) =>
+                        v == null || v.isEmpty ? "Enter your name" : null,
+                  ),
 
-              // Email
-              TextFormField(
-                controller: emailController,
-                decoration: const InputDecoration(
-                  labelText: "Email Address",
-                  border: OutlineInputBorder(),
-                ),
-                validator: (v) =>
-                    v == null || v.isEmpty ? "Enter your email" : null,
-              ),
+                  const SizedBox(height: 16),
 
-              const SizedBox(height: 16),
+                  // Email
+                  TextFormField(
+                    controller: emailController,
+                    decoration: modernInput("Email Address"),
+                      validator: (v) =>
+                        v == null || v.isEmpty ? "Enter your email" : null,
+                  ),
 
-              // Contact
-              TextFormField(
-                controller: contactController,
-                keyboardType: TextInputType.phone,
-                decoration: const InputDecoration(
-                  labelText: "Contact Number",
-                  border: OutlineInputBorder(),
-                ),
-                validator: (v) =>
-                    v == null || v.isEmpty ? "Enter your phone number" : null,
-              ),
+                  const SizedBox(height: 16),
 
-              const SizedBox(height: 20),
+                  // Contact
+                  TextFormField(
+                    controller: contactController,
+                    keyboardType: TextInputType.phone,
+                    decoration: modernInput("Enter phone"),
+                    validator: (v) =>
+                        v == null || v.isEmpty ? "Enter your phone number" : null,
+                  ),
 
-              // Program Dropdown
-              const Text("Program Type"),
-              DropdownButtonFormField<String>(
-                value: selectedProgram,
-                items: programType.map((p) {
-                  return DropdownMenuItem(value: p, child: Text(p));
-                }).toList(),
-                decoration: const InputDecoration(border: OutlineInputBorder()),
-                onChanged: (value) {
-                  setState(() {
-                    selectedProgram = value!;
-                    selectedCourse = null; // Reset course
-                  });
-                },
-                validator: (v) =>
-                    v == "Select Program" ? "Select a program" : null,
-              ),
+                  const SizedBox(height: 20),
 
-              const SizedBox(height: 20),
+                  // Program Dropdown
+                  const Text("Program Type"),
+                  DropdownButtonFormField<String>(
+                    initialValue: selectedProgram,
+                    items: programType.map((p) {
+                      return DropdownMenuItem(value: p, child: Text(p));
+                    }).toList(),
+                    decoration: const InputDecoration(border: OutlineInputBorder()),
+                    onChanged: (value) {
+                      setState(() {
+                        selectedProgram = value!;
+                        selectedCourse = null; // Reset course
+                      });
+                    },
+                    validator: (v) =>
+                        v == "Select Program" ? "Select a program" : null,
+                  ),
 
-              // Course Dropdown (only visible after program selected)
-              if (selectedProgram != "Select Program")
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text("Select Course"),
+                  const SizedBox(height: 20),
 
-                    DropdownButtonFormField<String>(
-                      value: selectedCourse,
-                      isExpanded: true,
-                      isDense: false, // important → allows height to grow
-                      itemHeight: null, // important → removes fixed 48px height
+                  // Course Dropdown (only visible after program selected)
+                  if (selectedProgram != "Select Program")
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text("Select Course"),
 
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        contentPadding: EdgeInsets.symmetric(
-                          vertical: 10,
-                          horizontal: 10,
+                        DropdownButtonFormField<String>(
+                          value: selectedCourse,
+                          isExpanded: true,
+                          isDense: false, // important → allows height to grow
+                          itemHeight: null, // important → removes fixed 48px height
+
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            contentPadding: EdgeInsets.symmetric(
+                              vertical: 10,
+                              horizontal: 10,
+                            ),
+                          ),
+
+                          // Selected value widget (dynamic height)
+                          selectedItemBuilder: (BuildContext context) {
+                            return programCourses[selectedProgram]!.map((value) {
+                              return Flexible(
+                                child: Text(
+                                  value,
+                                  style: const TextStyle(color: Colors.black),
+                                  softWrap: true,
+                                  maxLines: null,
+                                  overflow: TextOverflow.visible,
+                                ),
+                              );
+                            }).toList();
+                          },
+
+                          // Menu items
+                          items: programCourses[selectedProgram]!.map((course) {
+                            return DropdownMenuItem(
+                              value: course,
+                              child: Text(course, softWrap: true, maxLines: null),
+                            );
+                          }).toList(),
+
+                          onChanged: (value) {
+                            setState(() => selectedCourse = value);
+                          },
+
+                          validator: (v) =>
+                              v == null ? "Please select a course" : null,
                         ),
-                      ),
+                      ],
+                    ),
 
-                      // Selected value widget (dynamic height)
-                      selectedItemBuilder: (BuildContext context) {
-                        return programCourses[selectedProgram]!.map((value) {
-                          return Flexible(
-                            child: Text(
-                              value,
-                              style: const TextStyle(color: Colors.black),
-                              softWrap: true,
-                              maxLines: null,
-                              overflow: TextOverflow.visible,
+                  const SizedBox(height: 30),
+
+                  // Submit Button
+                  SizedBox(
+                    width: double.infinity,
+                    height: 50,
+                    child: ElevatedButton(
+                      child: const Text("Submit"),
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("Form Submitted Successfully"),
                             ),
                           );
-                        }).toList();
+                        }
                       },
-
-                      // Menu items
-                      items: programCourses[selectedProgram]!.map((course) {
-                        return DropdownMenuItem(
-                          value: course,
-                          child: Text(course, softWrap: true, maxLines: null),
-                        );
-                      }).toList(),
-
-                      onChanged: (value) {
-                        setState(() => selectedCourse = value);
-                      },
-
-                      validator: (v) =>
-                          v == null ? "Please select a course" : null,
                     ),
-                  ],
-                ),
-
-              const SizedBox(height: 30),
-
-              // Submit Button
-              SizedBox(
-                width: double.infinity,
-                height: 50,
-                child: ElevatedButton(
-                  child: const Text("Submit"),
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text("Form Submitted Successfully"),
-                        ),
-                      );
-                    }
-                  },
-                ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),
