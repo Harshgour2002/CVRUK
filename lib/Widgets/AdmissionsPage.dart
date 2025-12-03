@@ -6,12 +6,29 @@ class AdmissionsPage extends StatelessWidget {
 
   // Your 6 cards data
   final List<Map<String, String>> cardsData = const [
-    {"label": "Why CVRU?", "icon": "assets/admissionCardImage/question-mark.png"},
-    {"label": "How to Apply", "icon": "assets/admissionCardImage/apply.png"},
-    {"label": "Scholarships", "icon": "assets/admissionCardImage/scholarship.png"},
-    {"label": "Entrance Exam", "icon": "assets/admissionCardImage/exam-results.png"},
-    {"label": "Refund Policy", "icon": "assets/admissionCardImage/cash-back.png"},
-    {"label": "FAQ's", "icon": "assets/admissionCardImage/faq.png"},
+    {
+      "label": "Why CVRU?",
+      "icon": "assets/admissionCardImage/question-mark.png",
+    },
+    {
+      "label": "How to Apply",
+      "icon": "assets/admissionCardImage/apply.png"},
+    {
+      "label": "Scholarships",
+      "icon": "assets/admissionCardImage/scholarship.png",
+    },
+    {
+      "label": "Entrance Exam",
+      "icon": "assets/admissionCardImage/exam-results.png",
+    },
+    {
+      "label": "Refund Policy",
+      "icon": "assets/admissionCardImage/cash-back.png",
+    },
+    {
+      "label": "FAQ's",
+      "icon": "assets/admissionCardImage/faq.png"
+    },
   ];
 
   @override

@@ -90,7 +90,7 @@ class _EnquiryFormState extends State<EnquiryForm> {
     "Diploma",
     "Undergraduate",
     "Postgraduate",
-    "PHD"
+    "PHD",
   ];
 
   String? selectedProgram = "Select Program";
@@ -99,10 +99,7 @@ class _EnquiryFormState extends State<EnquiryForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Enquiry Form"),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: const Text("Enquiry Form"), centerTitle: true),
 
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -121,7 +118,7 @@ class _EnquiryFormState extends State<EnquiryForm> {
                   border: OutlineInputBorder(),
                 ),
                 validator: (v) =>
-                v == null || v.isEmpty ? "Enter your name" : null,
+                    v == null || v.isEmpty ? "Enter your name" : null,
               ),
 
               const SizedBox(height: 16),
@@ -134,7 +131,7 @@ class _EnquiryFormState extends State<EnquiryForm> {
                   border: OutlineInputBorder(),
                 ),
                 validator: (v) =>
-                v == null || v.isEmpty ? "Enter your email" : null,
+                    v == null || v.isEmpty ? "Enter your email" : null,
               ),
 
               const SizedBox(height: 16),
@@ -148,7 +145,7 @@ class _EnquiryFormState extends State<EnquiryForm> {
                   border: OutlineInputBorder(),
                 ),
                 validator: (v) =>
-                v == null || v.isEmpty ? "Enter your phone number" : null,
+                    v == null || v.isEmpty ? "Enter your phone number" : null,
               ),
 
               const SizedBox(height: 20),
@@ -168,7 +165,7 @@ class _EnquiryFormState extends State<EnquiryForm> {
                   });
                 },
                 validator: (v) =>
-                v == "Select Program" ? "Select a program" : null,
+                    v == "Select Program" ? "Select a program" : null,
               ),
 
               const SizedBox(height: 20),
@@ -188,8 +185,10 @@ class _EnquiryFormState extends State<EnquiryForm> {
 
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
-                        contentPadding:
-                        EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                        contentPadding: EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 10,
+                        ),
                       ),
 
                       // Selected value widget (dynamic height)
@@ -211,11 +210,7 @@ class _EnquiryFormState extends State<EnquiryForm> {
                       items: programCourses[selectedProgram]!.map((course) {
                         return DropdownMenuItem(
                           value: course,
-                          child: Text(
-                            course,
-                            softWrap: true,
-                            maxLines: null,
-                          ),
+                          child: Text(course, softWrap: true, maxLines: null),
                         );
                       }).toList(),
 
@@ -223,11 +218,11 @@ class _EnquiryFormState extends State<EnquiryForm> {
                         setState(() => selectedCourse = value);
                       },
 
-                      validator: (v) => v == null ? "Please select a course" : null,
+                      validator: (v) =>
+                          v == null ? "Please select a course" : null,
                     ),
                   ],
                 ),
-
 
               const SizedBox(height: 30),
 
@@ -241,13 +236,13 @@ class _EnquiryFormState extends State<EnquiryForm> {
                     if (_formKey.currentState!.validate()) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                            content: Text("Form Submitted Successfully")),
+                          content: Text("Form Submitted Successfully"),
+                        ),
                       );
                     }
                   },
                 ),
               ),
-
             ],
           ),
         ),

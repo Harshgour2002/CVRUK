@@ -27,7 +27,10 @@ class Admissioncards extends StatelessWidget {
           case 0:
             {
               // Navigate to "Why CVRU?" page
-              Navigator.push(context, MaterialPageRoute(builder: (context) => WhyCVRU()));
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => WhyCVRU()),
+              );
             }
             break;
           case 1:
@@ -38,7 +41,10 @@ class Admissioncards extends StatelessWidget {
           case 2:
             {
               // Navigate to "Scholarships" page
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Scholarships()));
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Scholarships()),
+              );
             }
             break;
           case 3:
@@ -49,13 +55,19 @@ class Admissioncards extends StatelessWidget {
           case 4:
             {
               // Navigate to "Refund Policy" page
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> Refundpolicy()));
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Refundpolicy()),
+              );
             }
             break;
           case 5:
             {
               // Navigate to "FAQ's" page
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> Faq()));
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Faq()),
+              );
             }
             break;
           default:

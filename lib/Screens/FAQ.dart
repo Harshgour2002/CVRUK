@@ -11,43 +11,40 @@ class Faq extends StatelessWidget {
       {
         'question': 'Is there any Entrance Exam?',
         'answer':
-        'Yes, the AISECT Group of University conducts an entrance exam called the '
-            'AISECT Joint Entrance Examination (AJEE) for admission to UG, PG, and Doctoral programs.'
+            'Yes, the AISECT Group of University conducts an entrance exam called the '
+            'AISECT Joint Entrance Examination (AJEE) for admission to UG, PG, and Doctoral programs.',
       },
       {
         'question': 'What documents are required for admission?',
         'answer':
-        '10th Marksheet\n12th Marksheet\nGraduation Marksheet\nAadhar Card\n'
-            'Passport Size Photos\nTransfer Certificate\nMigration Certificate'
+            '10th Marksheet\n12th Marksheet\nGraduation Marksheet\nAadhar Card\n'
+            'Passport Size Photos\nTransfer Certificate\nMigration Certificate',
       },
       {
         'question': 'Is the university well-recognized and approved?',
         'answer':
-        'Yes, Dr. C.V. Raman University is approved and recognized by NCTE, AICTE, MP Govt., '
-            'UGC, MP Paramedical Council, and AIU.'
+            'Yes, Dr. C.V. Raman University is approved and recognized by NCTE, AICTE, MP Govt., '
+            'UGC, MP Paramedical Council, and AIU.',
       },
       {
         'question': 'Does the university provide transport facility?',
         'answer':
-        'Yes. A fleet of buses is available for students within a 40 km radius from the campus.'
+            'Yes. A fleet of buses is available for students within a 40 km radius from the campus.',
       },
       {
         'question': 'What major awards has CVRU received?',
         'answer':
-        '• ASSOCHAM India Excellence in Education Award 2018\n'
+            '• ASSOCHAM India Excellence in Education Award 2018\n'
             '• World Education Award 2016\n'
             '• World Education Summit Award for Innovation\n'
-            '• Felicitated for accepting NIELIT qualifiers for higher studies'
+            '• Felicitated for accepting NIELIT qualifiers for higher studies',
       },
     ];
 
     return Scaffold(
       backgroundColor: isDark ? Colors.black : Colors.grey.shade100,
       appBar: AppBar(
-        title: const Text(
-          "FAQ",
-          style: TextStyle(fontWeight: FontWeight.w600),
-        ),
+        title: const Text("FAQ", style: TextStyle(fontWeight: FontWeight.w600)),
         centerTitle: true,
         elevation: 1,
       ),
@@ -68,19 +65,31 @@ class Faq extends StatelessWidget {
                   blurRadius: 12,
                   spreadRadius: 1,
                   offset: const Offset(0, 3),
-                  color: Colors.black.withOpacity(0.07),
+                  color: Colors.black.withValues(alpha: 0.07),
                 ),
               ],
             ),
 
             child: Theme(
-              data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+              data: Theme.of(
+                context,
+              ).copyWith(dividerColor: Colors.transparent),
               child: ExpansionTile(
-                tilePadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                childrenPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                tilePadding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 10,
+                ),
+                childrenPadding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 10,
+                ),
 
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                collapsedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                collapsedShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
 
                 leading: Icon(
                   Icons.question_mark_outlined,
@@ -88,7 +97,7 @@ class Faq extends StatelessWidget {
                   size: 20,
                 ),
 
-              title: Text(
+                title: Text(
                   faq['question']!,
                   style: TextStyle(
                     fontSize: 16,
