@@ -1,3 +1,5 @@
+import 'package:cvruk/Screens/FAQ.dart';
+import 'package:cvruk/Screens/RefundPolicy.dart';
 import 'package:cvruk/Screens/Scholarships.dart';
 import 'package:cvruk/Screens/whyCVRU.dart';
 import 'package:flutter/material.dart';
@@ -47,11 +49,13 @@ class Admissioncards extends StatelessWidget {
           case 4:
             {
               // Navigate to "Refund Policy" page
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> Refundpolicy()));
             }
             break;
           case 5:
             {
               // Navigate to "FAQ's" page
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> Faq()));
             }
             break;
           default:
