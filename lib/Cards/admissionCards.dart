@@ -1,6 +1,7 @@
 import 'package:cvruk/Screens/FAQ.dart';
 import 'package:cvruk/Screens/RefundPolicy.dart';
 import 'package:cvruk/Screens/Scholarships.dart';
+import 'package:cvruk/Screens/howToApply.dart';
 import 'package:cvruk/Screens/whyCVRU.dart';
 import 'package:flutter/material.dart';
 
@@ -36,6 +37,7 @@ class Admissioncards extends StatelessWidget {
           case 1:
             {
               // Navigate to "How to Apply" page
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Howtoapply()));
             }
             break;
           case 2:

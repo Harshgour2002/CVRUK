@@ -183,7 +183,7 @@ class _EnquiryFormState extends State<EnquiryForm> {
                     items: programType.map((p) {
                       return DropdownMenuItem(value: p, child: Text(p));
                     }).toList(),
-                    decoration: const InputDecoration(border: OutlineInputBorder()),
+                    decoration: modernInput(""),
                     onChanged: (value) {
                       setState(() {
                         selectedProgram = value!;
@@ -209,13 +209,7 @@ class _EnquiryFormState extends State<EnquiryForm> {
                           isDense: false, // important → allows height to grow
                           itemHeight: null, // important → removes fixed 48px height
 
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            contentPadding: EdgeInsets.symmetric(
-                              vertical: 10,
-                              horizontal: 10,
-                            ),
-                          ),
+                          decoration: modernInput(""),
 
                           // Selected value widget (dynamic height)
                           selectedItemBuilder: (BuildContext context) {
