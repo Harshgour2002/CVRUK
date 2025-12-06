@@ -162,7 +162,6 @@ class StepModern extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// LEFT Timeline + Step Circle
             Column(
               children: [
                 // Step circle
@@ -179,7 +178,7 @@ class StepModern extends StatelessWidget {
                     shape: BoxShape.circle,
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.blue.withOpacity(0.25),
+                        color: Colors.blue.withValues(alpha: 0.25),
                         blurRadius: 10,
                         offset: const Offset(0, 4),
                       )
@@ -196,19 +195,11 @@ class StepModern extends StatelessWidget {
                   ),
                 ),
 
-                // // Vertical line
-                // Container(
-                //   width: 2,
-                //   height: 80,
-                //   margin: const EdgeInsets.symmetric(vertical: 4),
-                //   color: Colors.blue.withOpacity(0.2),
-                // ),
               ],
             ),
 
             const SizedBox(width: 16),
 
-            /// RIGHT Modern Card
             Expanded(
               child: Container(
                 margin: const EdgeInsets.only(bottom: 20),

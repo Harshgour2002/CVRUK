@@ -1,4 +1,6 @@
+import 'package:cvruk/Screens/ProfilePage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../Widgets/AdmissionsPage.dart';
 import '../Widgets/ContactPage.dart';
@@ -29,6 +31,7 @@ class _HomescreenState extends State<Homescreen> {
     ContactPage(),
   ];
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,14 +40,7 @@ class _HomescreenState extends State<Homescreen> {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.surface,
-            boxShadow: [
-              BoxShadow(
-                color: Theme.of(context).shadowColor.withOpacity(0.15),
-                blurRadius: 8,
-                offset: const Offset(0, 3),
-              ),
-            ],
+            color: Colors.white
           ),
           child: SafeArea(
             child: Row(
@@ -65,15 +61,20 @@ class _HomescreenState extends State<Homescreen> {
                   ],
                 ),
 
-                CircleAvatar(
-                  radius: 22,
-                  backgroundColor: Theme.of(
-                    context,
-                  ).colorScheme.tertiaryContainer,
-                  child: Icon(
-                    Icons.person,
-                    size: 28,
-                    color: Theme.of(context).colorScheme.onSurface,
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> Profilepage()));
+                  },
+                  child: CircleAvatar(
+                    radius: 22,
+                    backgroundColor: Theme.of(
+                      context,
+                    ).colorScheme.tertiaryContainer,
+                    child: Icon(
+                      Icons.person,
+                      size: 28,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
                   ),
                 ),
               ],
