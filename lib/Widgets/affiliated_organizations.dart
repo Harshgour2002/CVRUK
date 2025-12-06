@@ -15,7 +15,6 @@ class AffiliatedOrganizationsBox extends StatelessWidget {
       {"name": "PCI", "image": "assets/affiliation_images/PCI.png"}
     ];
 
-    final theme = Theme.of(context).colorScheme;
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Container(
@@ -23,10 +22,10 @@ class AffiliatedOrganizationsBox extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(12, 12, 12, 5),
 
       decoration: BoxDecoration(
-        color: theme.surface,                     // 👈 auto light/dark
+        color: isDark ? Colors.grey.shade900 : Colors.white,                    // 👈 auto light/dark
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: isDark ? Colors.grey.shade800 : Colors.grey.shade200,            // 👈 subtle border
+          color: isDark ? Colors.grey.shade800 : Colors.grey.shade300,            // 👈 subtle border
         ),
       ),
 
@@ -70,7 +69,7 @@ class _OrgCard extends StatelessWidget {
           margin: const EdgeInsets.all(2),
 
           decoration: BoxDecoration(
-            color: Colors.white,         // 👈 auto for light/dark
+            color: Colors.white,
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
@@ -83,7 +82,6 @@ class _OrgCard extends StatelessWidget {
 
           child: Image.asset(
             imagePath,
-
             fit: BoxFit.cover,
           ),
         ),
@@ -101,7 +99,7 @@ class _OrgCard extends StatelessWidget {
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w600,
-              color: theme.onSurface,           // 👈 auto text color
+              color: theme.onSurface,
             ),
           ),
         ),

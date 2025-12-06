@@ -18,6 +18,7 @@ class WhyCVRU extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Why CVRU?"),
@@ -31,6 +32,7 @@ class WhyCVRU extends StatelessWidget {
           itemBuilder: (context, index) {
             return Card(
               elevation: 4,
+              color: isDark ? Colors.grey.shade900 : Colors.white,
               shadowColor: Colors.deepPurpleAccent.withValues(alpha: 0.3),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),

@@ -39,9 +39,9 @@ class _HomescreenState extends State<Homescreen> {
         preferredSize: const Size.fromHeight(85),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-          decoration: BoxDecoration(
-            color: Colors.white
-          ),
+          // decoration: BoxDecoration(
+          //   color: Colors.white
+          // ),
           child: SafeArea(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

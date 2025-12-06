@@ -28,7 +28,7 @@ class UpcomingEventCard extends StatelessWidget {
         elevation: 2,
         shadowColor: Colors.black26,
         borderRadius: BorderRadius.circular(28),
-        color: Colors.white,
+        color: isDark ? Colors.grey.shade900 : Colors.white,
 
         // ---------------- BORDER ADDED HERE ----------------
         child: Container(
@@ -113,7 +113,7 @@ class UpcomingEventCard extends StatelessWidget {
                             Row(
                               children: [
                                 Icon(Icons.location_on,
-                                    size: 16, color: Colors.grey[600]),
+                                    size: 16, color: Colors.green),
                                 const SizedBox(width: 6),
                                 Text(
                                   event["venue"]!,
@@ -121,7 +121,6 @@ class UpcomingEventCard extends StatelessWidget {
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                     fontSize: 12,
-                                    color: Colors.grey[800],
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -159,7 +158,6 @@ class UpcomingEventCard extends StatelessWidget {
                                 Text(
                                   event["time"]!,
                                   style: TextStyle(
-                                    color: Colors.grey[700],
                                     fontSize: 13,
                                     fontWeight: FontWeight.w500,
                                   ),

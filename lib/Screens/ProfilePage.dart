@@ -35,6 +35,7 @@ class _ProfilepageState extends State<Profilepage> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       //backgroundColor: Colors.white,
       appBar: AppBar(
@@ -57,7 +58,6 @@ class _ProfilepageState extends State<Profilepage> {
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black87,
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -80,6 +80,7 @@ class _ProfilepageState extends State<Profilepage> {
                       TextFormField(
                         controller: _enrollmentIdController,
                         decoration: _modernInputDecoration(
+                          isDark: isDark,
                           label: "Enrollment ID",
                           hint: "Ex: 2023CS001",
                           icon: Icons.badge_outlined,
@@ -98,6 +99,7 @@ class _ProfilepageState extends State<Profilepage> {
                         controller: _passwordController,
                         obscureText: !_isPasswordVisible, // Toggles visibility
                         decoration: _modernInputDecoration(
+                          isDark: isDark,
                           label: "Password",
                           hint: "Enter your password",
                           icon: Icons.lock_outline,
@@ -177,6 +179,7 @@ class _ProfilepageState extends State<Profilepage> {
 
   // Helper method for consistent styling
   InputDecoration _modernInputDecoration({
+    required bool isDark,
     required String label,
     required String hint,
     required IconData icon,
@@ -184,10 +187,10 @@ class _ProfilepageState extends State<Profilepage> {
     return InputDecoration(
       labelText: label,
       hintText: hint,
-      prefixIcon: Icon(icon, color: Colors.grey[600]),
+      prefixIcon: Icon(icon, color: isDark ? Colors.grey.shade300 : Colors.grey.shade800),
       contentPadding: const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
       filled: true,
-      fillColor: Colors.grey[100], // Light grey background
+      fillColor: isDark ? Colors.grey.shade800 : Colors.grey.shade100,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(16),
         borderSide: BorderSide.none, // Removes default border

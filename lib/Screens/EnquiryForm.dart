@@ -8,6 +8,7 @@ class EnquiryForm extends StatefulWidget {
 }
 
 class _EnquiryFormState extends State<EnquiryForm> {
+
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController nameController = TextEditingController();
@@ -96,16 +97,16 @@ class _EnquiryFormState extends State<EnquiryForm> {
   String? selectedProgram = "Select Program";
   String? selectedCourse;
 
-  InputDecoration modernInput(String label) {
+  InputDecoration modernInput(String label, isDark) {
     return InputDecoration(
       labelText: label,
       filled: true,
-      fillColor: Colors.grey.shade100,
+      fillColor: isDark ? Colors.grey.shade800 : Colors.grey.shade100,
       contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
       labelStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
-        borderSide: BorderSide(color: Colors.grey.shade300),
+        borderSide: BorderSide(color: Colors.grey.shade400),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
@@ -119,6 +120,7 @@ class _EnquiryFormState extends State<EnquiryForm> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       appBar: AppBar(title: const Text("Enquiry Form"), centerTitle: true),
 
@@ -129,7 +131,7 @@ class _EnquiryFormState extends State<EnquiryForm> {
             padding: EdgeInsets.all(20.0),
             width: double.infinity,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: isDark ? Colors.grey.shade900 : Colors.white,
               borderRadius: BorderRadius.circular(18),
               boxShadow: [
                 BoxShadow(
@@ -148,7 +150,7 @@ class _EnquiryFormState extends State<EnquiryForm> {
                   // Name
                   TextFormField(
                     controller: nameController,
-                    decoration: modernInput("Full Name"),
+                    decoration: modernInput("Full Name", isDark),
                     validator: (v) =>
                         v == null || v.isEmpty ? "Enter your name" : null,
                   ),
@@ -158,7 +160,7 @@ class _EnquiryFormState extends State<EnquiryForm> {
                   // Email
                   TextFormField(
                     controller: emailController,
-                    decoration: modernInput("Email Address"),
+                    decoration: modernInput("Email Address", isDark),
                       validator: (v) =>
                         v == null || v.isEmpty ? "Enter your email" : null,
                   ),
@@ -169,7 +171,7 @@ class _EnquiryFormState extends State<EnquiryForm> {
                   TextFormField(
                     controller: contactController,
                     keyboardType: TextInputType.phone,
-                    decoration: modernInput("Enter phone"),
+                    decoration: modernInput("Enter phone", isDark),
                     validator: (v) =>
                         v == null || v.isEmpty ? "Enter your phone number" : null,
                   ),
@@ -183,7 +185,7 @@ class _EnquiryFormState extends State<EnquiryForm> {
                     items: programType.map((p) {
                       return DropdownMenuItem(value: p, child: Text(p));
                     }).toList(),
-                    decoration: modernInput(""),
+                    decoration: modernInput("", isDark),
                     onChanged: (value) {
                       setState(() {
                         selectedProgram = value!;
@@ -209,7 +211,7 @@ class _EnquiryFormState extends State<EnquiryForm> {
                           isDense: false, // important → allows height to grow
                           itemHeight: null, // important → removes fixed 48px height
 
-                          decoration: modernInput(""),
+                          decoration: modernInput("", isDark),
 
                           // Selected value widget (dynamic height)
                           selectedItemBuilder: (BuildContext context) {

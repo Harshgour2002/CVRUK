@@ -6,6 +6,7 @@ class ContactPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -15,7 +16,6 @@ class ContactPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(height: 20),
-
                 // University Logo
                 Center(
                   child: CircleAvatar(
@@ -33,45 +33,70 @@ class ContactPage extends StatelessWidget {
                 // Address Container
                 Container(
                   width: double.infinity,
-                  //margin: const EdgeInsets.symmetric(horizontal: 20),
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16),
+                    color: isDark ? Colors.grey.shade900 : Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: isDark
+                          ? Colors.white.withValues(alpha: 0.08)
+                          : Colors.grey.shade300,
+                      width: 1,
+                    ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey.shade300,
+                        color: isDark
+                            ? Colors.black.withValues(alpha: 0.4)
+                            : Colors.grey.withValues(alpha: 0.15),
                         blurRadius: 5,
                         spreadRadius: 1,
-                        offset: const Offset(0, 3),
+                        offset: const Offset(0, 2),
                       ),
                     ],
                   ),
-                  child: const Column(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         children: [
-                          Icon(
-                            Icons.local_activity_outlined,
-                            size: 20,
-                            color: Colors.amber,
+                          // Modern Rounded Icon Background
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: Colors.amber.withValues(alpha: 0.15),
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(
+                              Icons.location_on_outlined,
+                              color: Colors.amber,
+                              size: 22,
+                            ),
                           ),
-                          SizedBox(width: 5),
+
+                          const SizedBox(width: 12),
+
                           Text(
                             "Address",
                             style: TextStyle(
                               fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w700,
+                             // color: isDark ? Colors.white : Colors.black87,
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(height: 10),
+
+                      const SizedBox(height: 16),
+
                       Text(
-                        "Village:- Balkhadsura \nPost:- chhaigaon Makhan,"
-                        "Khandwa MP \nPinCode:-450771",
-                        style: TextStyle(fontSize: 16, height: 1.4),
+                        "Village:- Balkhadsura\n"
+                            "Post:- Chhaigaon Makhan, Khandwa MP\n"
+                            "PinCode:- 450771",
+                        style: TextStyle(
+                          fontSize: 15.5,
+                          height: 1.5,
+                          //color: isDark ? Colors.white70 : Colors.black87,
+                        ),
                       ),
                     ],
                   ),
@@ -82,45 +107,63 @@ class ContactPage extends StatelessWidget {
                 // Phone Number Container
                 Container(
                   width: double.infinity,
-                  //margin: const EdgeInsets.symmetric(horizontal: 20),
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: Colors.white,
                     borderRadius: BorderRadius.circular(16),
+                    color: isDark ? Colors.grey.shade900 : Colors.white,
+                    border: Border.all(
+                      color: isDark ? Colors.grey.shade800 : Colors.grey.shade300,
+                      width: 0.8,
+                    ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey.shade300,
+                        color: isDark
+                            ? Colors.black.withValues(alpha: 0.4)
+                            : Colors.grey.withValues(alpha: 0.15),
                         blurRadius: 5,
                         spreadRadius: 1,
-                        offset: const Offset(0, 3),
+                        offset: const Offset(0, 2),
                       ),
                     ],
                   ),
-                  child: const Column(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         children: [
-                          Icon(Icons.call, size: 20, color: Colors.green),
-                          SizedBox(width: 5),
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: Colors.green.withValues(alpha: 0.12),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: const Icon(Icons.call, color: Colors.green, size: 18),
+                          ),
+                          const SizedBox(width: 10),
                           Text(
                             "Contact Numbers",
                             style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                              fontSize: 19,
+                              fontWeight: FontWeight.w700,
+                              //color: isDark ? Colors.white : Colors.black87,
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 15),
+
                       Text(
                         "Administrative: 7320-247701\n"
-                        "Admission Enquiry:\n"
-                        "• 9575916565\n"
-                        "• 6269001063\n"
-                        "• 6269001060\n"
-                        "Email: info@cvrukmp.ac.in",
-                        style: TextStyle(fontSize: 16, height: 1.6),
+                            "Admission Enquiry:\n"
+                            "• 9575916565\n"
+                            "• 6269001063\n"
+                            "• 6269001060\n"
+                            "Email: info@cvrukmp.ac.in",
+                        style: TextStyle(
+                          fontSize: 16,
+                          height: 1.6,
+                          //color: isDark ? Colors.grey.shade300 : Colors.black87,
+                        ),
                       ),
                     ],
                   ),
@@ -129,53 +172,70 @@ class ContactPage extends StatelessWidget {
                 const SizedBox(height: 25),
 
                 // Email Number Container
-                // Email Number Container
                 Container(
                   width: double.infinity,
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: Colors.white,
                     borderRadius: BorderRadius.circular(16),
+                    color: isDark ? Colors.grey.shade900 : Colors.white,
+                    border: Border.all(
+                      color: isDark ? Colors.grey.shade800 : Colors.grey.shade300,
+                      width: 0.8,
+                    ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey.shade300,
+                        color: isDark
+                            ? Colors.black.withValues(alpha: 0.4)
+                            : Colors.grey.withValues(alpha: 0.15),
                         blurRadius: 5,
                         spreadRadius: 1,
-                        offset: const Offset(0, 3),
+                        offset: const Offset(0, 2),
                       ),
                     ],
                   ),
-                  child: const Column(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         children: [
-                          Icon(
-                            Icons.email_outlined,
-                            size: 20,
-                            color: Colors.redAccent,
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: Colors.redAccent.withValues(alpha: 0.12),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: const Icon(
+                              Icons.email_outlined,
+                              size: 18,
+                              color: Colors.redAccent,
+                            ),
                           ),
-                          SizedBox(width: 5),
+                          const SizedBox(width: 10),
                           Text(
                             "Email",
                             style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                              fontSize: 19,
+                              fontWeight: FontWeight.w700,
+                              //color: isDark ? Colors.white : Colors.black87,
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(height: 10),
 
-                      // Email row with icon
-                      SizedBox(width: 10),
+                      const SizedBox(height: 15),
+
                       Text(
                         "info@cvrukmp.ac.in",
-                        style: TextStyle(fontSize: 16, height: 1.6),
+                        style: TextStyle(
+                          fontSize: 16,
+                          height: 1.6,
+                          //color: isDark ? Colors.grey.shade300 : Colors.black87,
+                        ),
                       ),
                     ],
                   ),
                 ),
+
 
                 const SizedBox(height: 40),
 

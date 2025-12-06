@@ -91,10 +91,10 @@ class Explorecardsdesign extends StatelessWidget {
         margin: const EdgeInsets.all(6.0),
         padding: const EdgeInsets.all(2.0),
         decoration: BoxDecoration(
-          color: Theme.of(context).cardColor, // Auto light/dark
+          color: isDark ? Colors.grey.shade900 : Colors.white, // Auto light/dark
           borderRadius: BorderRadius.circular(15.0),
           border: Border.all(
-            color: isDark ? Colors.grey.shade800 : Colors.grey.shade200,
+            color: isDark ? Colors.grey.shade800 : Colors.grey.shade300,
           ),
         ),
         child: Column(
@@ -126,7 +126,6 @@ class Explorecardsdesign extends StatelessWidget {
               style: TextStyle(
                 fontSize: 11,
                 fontWeight: FontWeight.w500,
-                color: Theme.of(context).textTheme.bodyMedium!.color,
               ),
             ),
           ],

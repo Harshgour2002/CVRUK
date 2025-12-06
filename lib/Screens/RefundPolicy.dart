@@ -5,8 +5,10 @@ class Refundpolicy extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
+      //backgroundColor: Colors.grey.shade100,
+
       appBar: AppBar(title: const Text("Refund Policy"), centerTitle: true),
 
       body: SingleChildScrollView(
@@ -28,7 +30,7 @@ class Refundpolicy extends StatelessWidget {
               style: TextStyle(
                 fontSize: 16,
                 height: 1.4,
-                color: Colors.black87,
+                //color: Colors.black87,
               ),
             ),
 
@@ -38,7 +40,7 @@ class Refundpolicy extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: isDark ? Colors.grey.shade900 : Colors.white,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
@@ -62,7 +64,7 @@ class Refundpolicy extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: isDark ? Colors.grey.shade900 : Colors.white,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(

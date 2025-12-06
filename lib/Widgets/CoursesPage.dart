@@ -144,8 +144,9 @@ class CoursesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context). brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
+      //backgroundColor: Colors.grey.shade100,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(8),
         child: Column(
@@ -153,7 +154,7 @@ class CoursesPage extends StatelessWidget {
             return Container(
               margin: const EdgeInsets.only(bottom: 22),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: isDark ? Colors.grey.shade900 : Colors.white,
                 borderRadius: BorderRadius.circular(18),
                 boxShadow: [
                   BoxShadow(
@@ -197,7 +198,7 @@ class CoursesPage extends StatelessWidget {
                             fontWeight: FontWeight.w700,
                           ),
                         ),
-                        divider(),
+                        divider(isDark),
 
                         const SizedBox(height: 18),
 
@@ -206,7 +207,7 @@ class CoursesPage extends StatelessWidget {
                           sectionTitle("Diploma Programs"),
                           bulletList(dept["diploma"]),
                           const SizedBox(height: 16),
-                          divider(),
+                          divider(isDark),
                         ],
 
                         // UG
@@ -214,7 +215,7 @@ class CoursesPage extends StatelessWidget {
                           sectionTitle("Undergraduate Programs"),
                           bulletList(dept["ug"]),
                           const SizedBox(height: 16),
-                          divider(),
+                          divider(isDark),
                         ],
 
                         // PG
@@ -268,11 +269,11 @@ class CoursesPage extends StatelessWidget {
     );
   }
 
-  Widget divider() {
-    return const Divider(
+  Widget divider(bool isDark) {
+    return Divider(
       height: 20,
       thickness: 1,
-      color: Colors.black12,
+      color: isDark ? Colors.grey.shade800 : Colors.grey.shade300,
     );
   }
 }

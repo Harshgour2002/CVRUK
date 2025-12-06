@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 class Howtoapply extends StatelessWidget {
   const Howtoapply({super.key});
 
+
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("How to Apply"),
@@ -16,8 +19,9 @@ class Howtoapply extends StatelessWidget {
           children: [
             // ---------- STEPS ----------
             Column(
-              children: const [
+              children: [
                 StepModern(
+                  isDark: isDark,
                   stepNumber: 1,
                   title: "Obtain the Admission Form",
                   description:
@@ -30,6 +34,7 @@ class Howtoapply extends StatelessWidget {
                       "in the DD for postal charges.",
                 ),
                 StepModern(
+                  isDark: isDark,
                   stepNumber: 2,
                   title: "Select Your Course",
                   description:
@@ -42,6 +47,7 @@ class Howtoapply extends StatelessWidget {
                       "Choose the program that aligns with your interests and goals.",
                 ),
                 StepModern(
+                  isDark: isDark,
                   stepNumber: 3,
                   title: "Complete the Application Form",
                   description:
@@ -63,6 +69,7 @@ class Howtoapply extends StatelessWidget {
 
             // ---------- CARD 1 ----------
             _buildInfoCard(
+              isDark : isDark,
               title: "Submitting the Application Form",
               content:
               "Duly attested documents along with the Application Forms "
@@ -73,6 +80,7 @@ class Howtoapply extends StatelessWidget {
 
             // ---------- CARD 2 ----------
             _buildInfoCard(
+              isDark : isDark,
               title: "DR. C. V. RAMAN UNIVERSITY",
               content:
               "Indore-Khandwa Highway, Village Chhaigaon Makhan,\n"
@@ -87,6 +95,7 @@ class Howtoapply extends StatelessWidget {
 
             // ---------- CARD 3 ----------
             _buildInfoCard(
+              isDark : isDark,
               title: "DR. C. V. RAMAN UNIVERSITY - CITY OFFICE",
               content:
               "Vaikunth Nagar, In front of S.N. College,\n"
@@ -102,6 +111,7 @@ class Howtoapply extends StatelessWidget {
 
   // ---------- CARD BUILDER ----------
   static Widget _buildInfoCard({
+    required bool isDark,
     required String title,
     required String content,
   }) {
@@ -109,7 +119,7 @@ class Howtoapply extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: isDark ? Colors.grey.shade900 : Colors.white,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
@@ -144,12 +154,14 @@ class Howtoapply extends StatelessWidget {
 }
 
 class StepModern extends StatelessWidget {
+  final bool isDark;
   final int stepNumber;
   final String title;
   final String description;
 
   const StepModern({
     super.key,
+    required this.isDark,
     required this.stepNumber,
     required this.title,
     required this.description,
@@ -201,41 +213,38 @@ class StepModern extends StatelessWidget {
             const SizedBox(width: 16),
 
             Expanded(
-              child: Container(
-                margin: const EdgeInsets.only(bottom: 20),
-                padding: const EdgeInsets.all(18),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(18),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
-                      blurRadius: 12,
-                      offset: const Offset(0, 6),
-                    ),
-                  ],
+              child: Card(
+                elevation: 4,
+                color: isDark ? Colors.grey.shade900 : Colors.white,
+                shadowColor: Colors.deepPurpleAccent.withValues(alpha: 0.3),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black,
+                child: Container(
+                  margin: const EdgeInsets.only(bottom: 20),
+                  padding: const EdgeInsets.all(18),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          //color: Colors.black,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      description,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey.shade700,
-                        height: 1.45,
+                      const SizedBox(height: 8),
+                      Text(
+                        description,
+                        style: TextStyle(
+                          fontSize: 14,
+                          //color: Colors.grey.shade700,
+                          height: 1.45,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

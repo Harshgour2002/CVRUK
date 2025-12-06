@@ -5,6 +5,7 @@ class Scholarships extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final List<Map<String, String>> clubs = const [
       {
         "title": "Registrar Club",
@@ -77,9 +78,7 @@ class Scholarships extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(
                                 vertical: 12, horizontal: 16),
                             decoration: BoxDecoration(
-                              color: idx % 2 == 0
-                                  ? Colors.grey.shade100
-                                  : Colors.white,
+                            color: isDark ? Colors.grey.shade900 : Colors.white,
                               border: idx != shikshaMitra.length - 1
                                   ? const Border(
                                   bottom: BorderSide(
@@ -128,6 +127,7 @@ class Scholarships extends StatelessWidget {
               children: clubs.map((club) {
                 return Card(
                   elevation: 4,
+                  color: isDark ? Colors.grey.shade900 : Colors.white,
                   shadowColor: Colors.deepPurpleAccent.withOpacity(0.3),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),

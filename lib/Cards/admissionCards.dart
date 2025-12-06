@@ -79,9 +79,7 @@ class Admissioncards extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.06)
-              : Colors.white, // cleaner modern background
+          color: isDark ? Colors.grey.shade900 : Colors.white,
           borderRadius: BorderRadius.circular(18),
           boxShadow: [
             BoxShadow(
@@ -130,7 +128,7 @@ class Admissioncards extends StatelessWidget {
                 fontSize: 15,
                 fontWeight: FontWeight.w600,
                 letterSpacing: 0.3,
-                color: isDark ? Colors.white : Colors.black87,
+                //color: isDark ? Colors.white : Colors.black87,
               ),
             ),
           ],
