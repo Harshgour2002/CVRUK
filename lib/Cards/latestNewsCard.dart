@@ -10,11 +10,12 @@ class LatestNewsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 2),
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: isDark ? Colors.grey.shade900 : Colors.white,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
@@ -46,7 +47,6 @@ class LatestNewsCard extends StatelessWidget {
                   latestNews["description"] ?? "",
                   style: TextStyle(
                     fontSize: 13,
-                    color: Colors.grey[700],
                     height: 1.3,
                   ),
                   maxLines: 2,

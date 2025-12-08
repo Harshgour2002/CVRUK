@@ -25,16 +25,16 @@ class _FeedBackState extends State<FeedBack> {
     "Other",
   ];
 
-  InputDecoration modernInput(String label) {
+  InputDecoration modernInput(String label, bool isDark) {
     return InputDecoration(
       labelText: label,
       filled: true,
-      fillColor: Colors.grey.shade100,
+      fillColor: isDark ? Colors.grey.shade800 : Colors.grey.shade100,
       contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
-      labelStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+      labelStyle:  TextStyle(fontSize: 15, color: Colors.grey.shade500),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
-        borderSide: BorderSide(color: Colors.grey.shade300),
+        borderSide: BorderSide(color: Colors.grey.shade400),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
@@ -48,8 +48,8 @@ class _FeedBackState extends State<FeedBack> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
         title: const Text("Feedback"),
         centerTitle: true,
@@ -62,7 +62,7 @@ class _FeedBackState extends State<FeedBack> {
             padding: const EdgeInsets.all(20),
             width: double.infinity,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: isDark ? Colors.grey.shade900 : Colors.white,
               borderRadius: BorderRadius.circular(18),
               boxShadow: [
                 BoxShadow(
@@ -89,7 +89,7 @@ class _FeedBackState extends State<FeedBack> {
                     "Help us improve your experience",
                     style: TextStyle(
                       fontSize: 14,
-                      color: Colors.grey.shade600,
+                      color: Colors.grey.shade500,
                     ),
                   ),
                   const SizedBox(height: 25),
@@ -97,7 +97,7 @@ class _FeedBackState extends State<FeedBack> {
                   TextFormField(
                     key: UniqueKey(),
                     controller: nameController,
-                    decoration: modernInput("Full Name"),
+                    decoration: modernInput("Full Name", isDark),
                     validator: (value) =>
                     value!.isEmpty ? "Please enter your name" : null,
                   ),
@@ -106,7 +106,7 @@ class _FeedBackState extends State<FeedBack> {
                   TextFormField(
                     key: UniqueKey(),
                     controller: emailController,
-                    decoration: modernInput("Email"),
+                    decoration: modernInput("Email", isDark),
                     validator: (value) =>
                     value!.contains("@") ? null : "Enter valid email",
                   ),
@@ -116,7 +116,7 @@ class _FeedBackState extends State<FeedBack> {
                     key: UniqueKey(),
                     controller: phoneController,
                     keyboardType: TextInputType.phone,
-                    decoration: modernInput("Phone Number"),
+                    decoration: modernInput("Phone Number", isDark),
                     validator: (value) =>
                     value!.length == 10 ? null : "Enter valid phone number",
                   ),
@@ -124,7 +124,7 @@ class _FeedBackState extends State<FeedBack> {
 
                   DropdownButtonFormField(
                     value: selectedFeedbackType,
-                    decoration: modernInput("Feedback Type"),
+                    decoration: modernInput("Feedback Type", isDark),
                     items: feedbackTypes
                         .map((type) => DropdownMenuItem(
                       value: type,
@@ -145,7 +145,7 @@ class _FeedBackState extends State<FeedBack> {
                     key: UniqueKey(),
                     controller: messageController,
                     maxLines: 5,
-                    decoration: modernInput("Your Message"),
+                    decoration: modernInput("Your Message", isDark),
                     validator: (value) =>
                     value!.isEmpty ? "Please enter your message" : null,
                   ),

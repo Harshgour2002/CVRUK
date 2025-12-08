@@ -53,6 +53,7 @@ class _PlacementsState extends State<Placements> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -169,11 +170,11 @@ class _PlacementsState extends State<Placements> {
                   final stat = placementStats[index];
                   return Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: isDark ? Colors.grey.shade900 : Colors.white,
                       borderRadius: BorderRadius.circular(14),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.06),
+                          color: Colors.black.withValues(alpha: 0.06),
                           blurRadius: 6,
                           offset: const Offset(0, 3),
                         ),
@@ -197,7 +198,7 @@ class _PlacementsState extends State<Placements> {
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 13,
-                            color: Colors.grey.shade700,
+
                           ),
                         ),
                       ],

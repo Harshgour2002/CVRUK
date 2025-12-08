@@ -63,10 +63,10 @@ class _OngoingProgramDetailPageState extends State<OngoingProgramDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final program = widget.program;
 
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,7 +114,7 @@ class _OngoingProgramDetailPageState extends State<OngoingProgramDetailPage> {
               child: Container(
                 padding: const EdgeInsets.all(18),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: isDark ? Colors.grey.shade900 : Colors.white,
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
@@ -134,7 +134,7 @@ class _OngoingProgramDetailPageState extends State<OngoingProgramDetailPage> {
 
                     Text(program["subtitle"]!,
                         style: TextStyle(
-                            fontSize: 16, color: Colors.grey.shade700)),
+                            fontSize: 16, )),
                     const SizedBox(height: 20),
 
                     infoRow(Icons.calendar_month, "Date", program["date"]!),
@@ -160,7 +160,6 @@ class _OngoingProgramDetailPageState extends State<OngoingProgramDetailPage> {
                       style: TextStyle(
                         fontSize: 15,
                         height: 1.5,
-                        color: Colors.grey.shade700,
                       ),
                     ),
 
@@ -178,7 +177,7 @@ class _OngoingProgramDetailPageState extends State<OngoingProgramDetailPage> {
       bottomNavigationBar: Container(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: isDark ? Colors.grey.shade900 : Colors.white,
           boxShadow: [
             BoxShadow(color: Colors.black12, blurRadius: 8, offset: Offset(0, -2)),
           ],
@@ -197,7 +196,7 @@ class _OngoingProgramDetailPageState extends State<OngoingProgramDetailPage> {
                 child: ElevatedButton(
                   onPressed: isDownloading ? null : downloadBrochure,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.grey.shade200,
+
                     elevation: 0,
                     padding: const EdgeInsets.all(10),
                     shape: RoundedRectangleBorder(
@@ -261,7 +260,7 @@ class _OngoingProgramDetailPageState extends State<OngoingProgramDetailPage> {
               Text(label,
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14)),
               Text(value,
-                  style: TextStyle(fontSize: 15, color: Colors.grey.shade700)),
+                  style: TextStyle(fontSize: 15)),
             ],
           ),
         ),

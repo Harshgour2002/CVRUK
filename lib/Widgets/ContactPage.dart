@@ -7,6 +7,8 @@ class ContactPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final theme =  Theme.of(context);
+    final color = theme.colorScheme;
     return Scaffold(
       body: SafeArea(
         child: Padding(

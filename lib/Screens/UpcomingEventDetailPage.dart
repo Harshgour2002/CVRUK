@@ -61,10 +61,6 @@ class _UpcomingEventDetailPageState extends State<UpcomingEventDetailPage> {
         isDownloading = false;
       });
 
-      // ScaffoldMessenger.of(context).showSnackBar(
-      //   SnackBar(content: Text("Downloaded to Downloads folder")),
-      // );
-
       OpenFilex.open(savePath);
     } catch (e) {
       setState(() {
@@ -77,22 +73,18 @@ class _UpcomingEventDetailPageState extends State<UpcomingEventDetailPage> {
     }
   }
 
-  /// ----------------------------
-  /// UI BUILD
-  /// ----------------------------
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final event = widget.event;
 
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
+      //backgroundColor: Colors.grey.shade100,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// -----------------------------------------------------
-            /// TOP IMAGE
-            /// -----------------------------------------------------
+
             Stack(
               children: [
                 Hero(
@@ -135,15 +127,12 @@ class _UpcomingEventDetailPageState extends State<UpcomingEventDetailPage> {
 
             const SizedBox(height: 15),
 
-            /// -----------------------------------------------------
-            /// DETAILS CARD
-            /// -----------------------------------------------------
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Container(
                 padding: const EdgeInsets.all(18),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: isDark ? Colors.grey.shade900 : Colors.white,
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
@@ -168,7 +157,7 @@ class _UpcomingEventDetailPageState extends State<UpcomingEventDetailPage> {
                       event["subtitle"]!,
                       style: TextStyle(
                         fontSize: 16,
-                        color: Colors.grey.shade700,
+                        //color: Colors.grey.shade700,
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -201,22 +190,20 @@ class _UpcomingEventDetailPageState extends State<UpcomingEventDetailPage> {
                       event["description"]!,
                       style: TextStyle(
                         fontSize: 15,
-                        color: Colors.grey.shade700,
+                        //color: Colors.grey.shade700,
                         height: 1.5,
                       ),
                     ),
 
                     const SizedBox(height: 20),
 
-                    /// -------------------------------------------------
-                    /// DOWNLOAD BUTTON WITH PROGRESS
-                    /// -------------------------------------------------
+
                     ElevatedButton(
                       onPressed: isDownloading
                           ? null
                           : () => downloadBrochure(context),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.grey.shade200,
+                        //backgroundColor: Colors.grey.shade200,
                         elevation: 0,
                         padding: const EdgeInsets.all(10),
                         shape: RoundedRectangleBorder(
@@ -233,7 +220,6 @@ class _UpcomingEventDetailPageState extends State<UpcomingEventDetailPage> {
                                   CircularProgressIndicator(
                                     value: downloadProgress,
                                     strokeWidth: 3,
-                                    color: Colors.black,
                                   ),
                                   Text(
                                     "${(downloadProgress * 100).toStringAsFixed(0)}%",
@@ -251,14 +237,13 @@ class _UpcomingEventDetailPageState extends State<UpcomingEventDetailPage> {
                                 Icon(
                                   Icons.download_rounded,
                                   size: 20,
-                                  color: Colors.black,
                                 ),
                                 SizedBox(width: 8),
                                 Text(
                                   "Download Brochure",
                                   style: TextStyle(
                                     fontWeight: FontWeight.w600,
-                                    color: Colors.black87,
+                                   // color: Colors.black87,
                                   ),
                                 ),
                               ],
@@ -272,13 +257,11 @@ class _UpcomingEventDetailPageState extends State<UpcomingEventDetailPage> {
         ),
       ),
 
-      /// -----------------------------------------------------
-      /// BOTTOM BAR
-      /// -----------------------------------------------------
+
       bottomNavigationBar: Container(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: isDark ? Colors.grey.shade900 : Colors.white,
           boxShadow: [
             BoxShadow(
               color: Colors.black12,
@@ -342,7 +325,7 @@ class _UpcomingEventDetailPageState extends State<UpcomingEventDetailPage> {
               ),
               Text(
                 value,
-                style: TextStyle(fontSize: 15, color: Colors.grey.shade700),
+                style: TextStyle(fontSize: 15),
               ),
             ],
           ),

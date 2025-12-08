@@ -79,7 +79,7 @@ class UpcomingEventCard extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w800,
-                              color: Colors.deepPurple,
+                              //color: Colors.deepPurple,
                             ),
                             textAlign: TextAlign.center,
                           ),
@@ -88,7 +88,7 @@ class UpcomingEventCard extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
-                              color: Colors.black87,
+                              //color: Colors.black87,
                             ),
                             textAlign: TextAlign.center,
                           ),
@@ -97,7 +97,7 @@ class UpcomingEventCard extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
-                              color: Colors.black54,
+                              //color: Colors.black54,
                             ),
                             textAlign: TextAlign.center,
                           ),
@@ -112,8 +112,18 @@ class UpcomingEventCard extends StatelessWidget {
                           children: [
                             Row(
                               children: [
-                                Icon(Icons.location_on,
-                                    size: 16, color: Colors.green),
+                                Container(
+                                  padding: const EdgeInsets.all(6),
+                                  decoration: BoxDecoration(
+                                    color: Colors.green.withOpacity(0.15), // light tint background
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: const Icon(
+                                    Icons.location_on,
+                                    size: 16,
+                                    color: Colors.green,
+                                  ),
+                                ),
                                 const SizedBox(width: 6),
                                 Text(
                                   event["venue"]!,
@@ -144,7 +154,7 @@ class UpcomingEventCard extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 fontSize: 14,
-                                color: Colors.grey[600],
+                                // color: Colors.grey[600],
                               ),
                             ),
 
@@ -153,7 +163,7 @@ class UpcomingEventCard extends StatelessWidget {
                             Row(
                               children: [
                                 Icon(Icons.access_time,
-                                    size: 14, color: Colors.grey[700]),
+                                    size: 14,),
                                 const SizedBox(width: 6),
                                 Text(
                                   event["time"]!,

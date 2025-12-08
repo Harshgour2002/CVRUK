@@ -28,6 +28,7 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       appBar: AppBar(
         title: const Text("News Details",
@@ -77,8 +78,8 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
                         width: currentIndex == index ? 18 : 8,
                         decoration: BoxDecoration(
                           color: currentIndex == index
-                              ? Colors.white
-                              : Colors.white54,
+                              ? Colors.blue
+                              : Colors.grey.shade400,
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
@@ -111,12 +112,12 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
 
                   const SizedBox(height: 14),
 
-                  // ----------------- META CARD -----------------
+
                   Container(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 16, vertical: 14),
                     decoration: BoxDecoration(
-                      color: Colors.grey.shade100,
+                      color: isDark ? Colors.grey.shade900 : Colors.white,
                       borderRadius: BorderRadius.circular(14),
                       boxShadow: [
                         BoxShadow(
@@ -145,7 +146,6 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
                     style: const TextStyle(
                       fontSize: 16,
                       height: 1.55,
-                      color: Colors.black87,
                       letterSpacing: 0.1,
                     ),
                   ),
@@ -167,7 +167,6 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
         Text(label,
             style: TextStyle(
               fontSize: 13,
-              color: Colors.grey.shade600,
               fontWeight: FontWeight.w500,
             )),
         Text(
@@ -175,7 +174,6 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
           style: const TextStyle(
             fontSize: 14.5,
             fontWeight: FontWeight.w600,
-            color: Colors.black87,
           ),
         ),
       ],
