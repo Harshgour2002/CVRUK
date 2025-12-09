@@ -94,6 +94,7 @@ class Explorecardsdesign extends StatelessWidget {
           color: isDark ? Colors.grey.shade900 : Colors.white, // Auto light/dark
           borderRadius: BorderRadius.circular(15.0),
           border: Border.all(
+            width: 0.5,
             color: isDark ? Colors.grey.shade800 : Colors.grey.shade300,
           ),
         ),
